@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: ./docker/django/Dockerfile
+    volumes:
+      - ./app:/app
+      - static_volume:/app/static
+      - ./env/aws:/root/.aws
+    ports:
+      - 8000:8000
+    command: gunicorn cfg.wsgi:application --bind 0.0.0.0:8000
+    networks:
+      - web_network
+      - db_network
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    ports:
+      - 8080:80
+    depends_on:
+      - web
+    networks:
+      - web_network
+    volumes:
+      - static_volume:/app/static
+
+networks: 
+    web_network:
+      driver: bridge
+    db_network:
+      driver: bridge
+
+volumes:
+  static_volume:

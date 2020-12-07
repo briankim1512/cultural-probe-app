@@ -1,0 +1,57 @@
+<html>
+    <head>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/analysis.css' %}"></head>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script src="{% static 'js/analysis.js' %}"></script>
+    <body>
+        <header id="header-app">
+            <div class="header-stat">
+                <div class="header-title">
+                    Number of Visitors
+                </div>
+                <div class="header-body">
+                    [[ visitors ]]
+                </div>
+            </div>
+            <div class="header-stat">
+                <div class="header-title">
+                    Number of Answers
+                </div>
+                <div class="header-body">
+                    [[ answers ]]
+                </div>
+            </div>
+            <div class="header-stat">
+                <div class="header-title">
+                    Number of Photos
+                </div>
+                <div class="header-body">
+                    [[ photos ]]
+                </div>
+            </div>
+        </header>
+        <div id="table-app">
+            <div id="table-tabs">
+                <div class="table-tab" v-for="tableTab in tableTabs">
+                    [[ tableTab ]]
+                </div>
+            </div>
+            <table id="table-body">
+                <tr>
+                    <th v-for="tableHeader in tableHeaders">
+                        [[ tableHeader ]]
+                    </th>
+                </tr>
+                <tr v-for="tableRow in tableRows">
+                    [[ tableRow ]]
+                    <td v-for="tableColumn in tableRow">
+                        [[ tableColumn ]]
+                    </td>
+                </tr>
+            </table>
+        </div>
+        {% csrf_token %}
+        <script>const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;</script>
+    </body>
+</html>

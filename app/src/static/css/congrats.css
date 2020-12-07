@@ -1,0 +1,71 @@
+#confetti-1 {
+    animation-name: confetti-1;
+    animation-duration: 1.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+
+#confetti-2 {
+    animation-name: confetti-2;
+    animation-duration: 1.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+
+#confetti-3 {
+    animation-name: confetti-3;
+    animation-duration: 1.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+
+.confetti {
+    position: fixed;
+    bottom: -100vh;
+    height: 100vh;
+    animation-play-state: paused;
+}
+
+@keyframes confetti-1 {
+    0% {
+        bottom: -100vh;
+    }
+    50% {
+        bottom: -30vh;
+    }
+    100% {
+        bottom: -100vh;
+    }
+}
+
+@keyframes confetti-2 {
+    0% {
+        bottom: -100vh;
+        right: 0vw;
+        transform: rotate(0deg);
+    }
+    50% {
+        bottom: 0;
+    }
+    100% {
+        bottom: -100vh;
+        right: 100vw;
+        transform: rotate(90deg);
+    }
+}
+
+@keyframes confetti-3 {
+    0% {
+        bottom: -100vh;
+        left: 0vw;
+        transform: rotate(0deg);
+    }
+    50% {
+        bottom: 0;
+    }
+    100% {
+        bottom: -100vh;
+        left: 100vw;
+        transform: rotate(90deg);
+    }
+}

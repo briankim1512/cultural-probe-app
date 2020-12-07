@@ -1,0 +1,64 @@
+<html>
+    <head>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}"></head>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script src="{% static 'js/index.js' %}"></script>
+    <body>
+        <div id="main-window" class="window show-window">
+            <h1 class="main-title">DailEmotion</h1>
+            <button id="main-start" class="window-button">Start!</button>
+            <!-- <button id="main-gallery" class="window-button">Gallery</button> -->
+        </div>
+        <div id="emotion-window" class="window hide-window">
+            <script src="{% static 'js/emotion.js' %}"></script>
+            <h2 class="window-title">How do you feel today?</h2>
+            <div id="emoji-app" class="item-grid">
+                <img class="window-img emoji-img" v-for="image in images" :src="image.url" :alt="image.alt">
+            </div>
+        </div>
+        <div id="capture-window" class="window hide-window">
+            <link rel="stylesheet" type="text/css" href="{% static 'css/capture.css' %}">
+            <script src="{% static 'js/capture.js' %}"></script>
+            <h2 class="window-title">Take a photo that reflects your emotion!</h2>
+            <label class="window-label window-button">
+                <input id="capture-input" type="file" accept="image/*" capture="camera">
+                Start !
+            </label>
+            <button id="pass-button" class="window-button">Pass...</button>
+        </div>
+        <div id="qna-window" class="window hide-window">
+            <script src="{% static 'js/questionList.js' %}"></script>
+            <script src="{% static 'js/qna.js' %}"></script>
+            <div id="qna-app">
+                <h2 id="qna-question" class="window-title window-subtitle">[[ question ]]</h2>
+            </div>
+            <textarea id="qna-response"></textarea>
+            <p id="qna-length" class="window-title window-subtitle"></p>
+            <button id="qna-button" class="window-button" disabled>Submit</button>
+        </div>
+        <div id="choice-window" class="window hide-window">
+            <script src="{% static 'js/choice.js' %}"></script>
+            <h2 class="window-title">Choose a Photo that You Relate to Today</h2>
+            <div id="choice-app" class="item-grid">
+                <img class="window-img choice-img" v-for="image in images" :src="image.url">
+            </div>
+        </div>
+        <div id="congrats-window" class="window hide-window">
+            <link rel="stylesheet" type="text/css" href="{% static 'css/congrats.css' %}">
+            <h2 class="window-title">Thanks! Stay tuned for more cool stuff!</h2>
+            <img id="confetti-1" class="confetti" src="{% static 'img/cft/confetti_1.svg' %}">
+            <img id="confetti-2" class="confetti" src="{% static 'img/cft/confetti_2.svg' %}">
+            <img id="confetti-3" class="confetti" src="{% static 'img/cft/confetti_2.svg' %}">
+        </div>
+        <div id="brightness-control">
+            <img src="{% static 'img/icon/brightness.svg' %}">
+        </div>
+        <!-- <div id="gallery-window" class="window">
+            <h2 id="main-window">Your Gallery</h2>
+            <img>
+        </div> -->
+        {% csrf_token %}
+        <script>const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;</script>
+    </body>
+</html>
